@@ -136,7 +136,7 @@ curl -sSf -L https://install.lix.systems/lix | bash -s -- install --no-confirm
 	else
 		echo "Configuring custom github access token" >&2
 		cat /etc/nix/nix.conf
-		printf "extra-access-tokens = github.com=%s" "${INPUT_GITHUB_ACCESS_TOKEN}"
+		printf "extra-access-tokens = github.com=%s\n" "${INPUT_GITHUB_ACCESS_TOKEN}"
 	fi
 	
 	printf "trusted-users = root %s\n" "${USER:-}"
