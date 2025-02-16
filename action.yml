@@ -1,8 +1,17 @@
 name: Lix GHA Installer Action
-description: Simple action to install Lix (the independent variant of the Nix package manager). 
+description: Simple action to install Lix (the independent variant of the Nix package manager).
+inputs:
+  github_access_token:
+    description: "Configure the given github token as an entry on extra-access-tokens in nix.conf"
+  extra_nix_config:
+    description: "Additional configuration to append to nix.conf"
 runs:
   using: "composite"
   steps:
     - name: Install Lix
       run: bash ${{ github.action_path }}/do-the-lix-thing
       shell: bash
+      env:
+        INPUT_GITHUB_ACCESS_TOKEN: ${{inputs.github_access_token}}
+        INPUT_EXTRA_CONFIG: ${{inputs.extra_nix_config}}
+        GITHUB_TOKEN: ${{github.token}}
